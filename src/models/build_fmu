@@ -40,8 +40,9 @@ esac
 # Number of bits, default to 64
 bits=64
 case "`uname -m`" in
-     *64) bits=64;;
-     *32) bits=32;;
+     *64)      bits=64;;
+     *32)      bits=32;;
+     *i[3-6]86 bits=32;;
 esac
 
 set -x
