@@ -179,7 +179,8 @@ static void* getAdr(int* s, FMU *fmu, const char* functionName){
 #endif
     if (!fp) {
         printf ("warning: Function %s not found in %s\n", name, DLL_SUFFIX);
-#ifdef __APPLE__
+#ifdef _MSC_VER
+#else
         printf ("Error was: %s\n", dlerror());
 #endif 
         printf ("If some symbols are found, but not others, check LD_LIBRARY_PATH or DYLD_LIBRARYPATH\n");
@@ -203,6 +204,10 @@ static int loadDll(const char* dllPath, FMU *fmu) {
 #endif
     if (!h) {
         printf("error: Could not load %s\n", dllPath);
+#ifdef _MSC_VER
+#else
+        printf("The error was: %s\n", dlerror());
+#endif
         return 0; // failure
     }
     fmu->dllHandle = h;
