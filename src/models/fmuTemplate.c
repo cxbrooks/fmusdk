@@ -472,10 +472,14 @@ fmiStatus fmiDoStep(fmiComponent c, fmiReal currentCommunicationPoint,
     if (invalidState(comp, "fmiDoStep", modelInitialized))
          return fmiError;
 
+    // FMUSDK 1.0.2 had a bug where there were commas after each 
+    // of the strings below.  Under win32 with MSVC, this caused bad
+    // values to be printed for currentCommunicationPoint and the
+    // remaining strings not to be printed.
     if (comp->loggingOn) log(c, comp->instanceName, fmiOK, "log", "fmiDoStep: "
-       "currentCommunicationPoint = %g, ", 
-       "communicationStepSize = %g, ", 
-       "newStep = fmi%s", 
+       "currentCommunicationPoint = %g, "
+       "communicationStepSize = %g, "
+       "newStep = fmi%s"
        currentCommunicationPoint, communicationStepSize, newStep ? "True" : "False");
     
     // Treat also case of zero step, i.e. during an event iteration
