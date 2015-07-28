@@ -479,7 +479,7 @@ fmiStatus fmiDoStep(fmiComponent c, fmiReal currentCommunicationPoint,
     if (comp->loggingOn) log(c, comp->instanceName, fmiOK, "log", "fmiDoStep: "
        "currentCommunicationPoint = %g, "
        "communicationStepSize = %g, "
-       "newStep = fmi%s"
+       "newStep = fmi%s",
        currentCommunicationPoint, communicationStepSize, newStep ? "True" : "False");
     
     // Treat also case of zero step, i.e. during an event iteration
