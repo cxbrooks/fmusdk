@@ -38,7 +38,7 @@
 #include "fmi_me.h"
 #include "sim_support.h"
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__linux__)
 #include <string.h> //strerror()
 #endif
 
